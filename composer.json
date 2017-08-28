@@ -29,7 +29,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Pine\\Impersonate\\Test": "tests"
+            "Pine\\Impersonate\\Test\\": "tests"
         }
     },
     "scripts": {
@@ -41,7 +41,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\TranslationLoader\\TranslationServiceProvider"
+                "Pine\\Impersonate\\ImpersonateServiceProvider"
             ]
         }
     }

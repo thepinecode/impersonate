@@ -13,7 +13,7 @@ class ImpersonateServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->loadRoutesFrom(dirname(__DIR__).'/routes/web.php');
     }
 
     /**
