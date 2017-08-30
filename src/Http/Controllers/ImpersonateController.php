@@ -1,16 +1,18 @@
 <?php
 
-namespace Pine\Http\Controllers;
+namespace Pine\Impersonate\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Pine\Impersonate\Events\Reverted;
 use Illuminate\Support\Facades\Session;
+use Pine\Impersonate\Events\ChangedToUser;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ImpersonateController extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests, DispatchesJobs;
 
     /**
      * The user model class.
@@ -26,7 +28,11 @@ class ImpersonateController extends BaseController
      */
     public function __construct()
     {
-        $this->model = config('auth.providers.users.model');
+        $this->model = config('impersonate.model');
+
+        foreach (config('impersonate.middlewares') as $middleware) {
+            $this->middleware($middleware);
+        }
     }
 
     /**
@@ -37,7 +43,15 @@ class ImpersonateController extends BaseController
      */
     public function impersonate($id)
     {
-        $user = $this->model::firstOrFail($id);
+        if ($id !== ($original = Auth::user()->id)) {
+            Session::put('original_user', $original);
+
+            Auth::login($user = $this->model::findOrFail($id));
+
+            event(new ChangedToUser($user));
+        }
+
+        return redirect(config('impersonate.redirect'));
     }
 
     /**
@@ -47,6 +61,12 @@ class ImpersonateController extends BaseController
      */
     public function revert()
     {
-        //
+        Auth::loginUsingId(Session::get('original_user'));
+
+        Session::forget('original_user');
+
+        event(new Reverted);
+
+        return redirect(config('impersonate.redirect'));
     }
 }

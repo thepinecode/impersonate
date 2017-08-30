@@ -13,7 +13,11 @@ class ImpersonateServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadRoutesFrom(dirname(__DIR__).'/routes/web.php');
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+
+        $this->publishes([
+            __DIR__.'/../config/impersonate.php' => config_path('impersonate.php'),
+        ]);
     }
 
     /**
@@ -23,6 +27,8 @@ class ImpersonateServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/impersonate.php', 'impersonate'
+        );
     }
 }

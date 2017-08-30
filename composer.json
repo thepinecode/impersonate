@@ -1,36 +1,26 @@
 {
-    "name": "thepinecode/impersoante",
-    "description": "Impersonate users easily in your Laraver app.",
-    "keywords": [
-        "laravel",
-        "debug",
-        "impersoante"
-    ],
-    "homepage": "https://github.com/thepinecode/impersonate",
+    "name": "thepinecode/impersonate",
+    "description": "Impersonate users easily in Laravel apps.",
+    "type": "project",
     "license": "MIT",
     "authors": [
         {
             "name": "Gergo D. Nagy",
-            "email": "hello@iamgergo.com",
-            "homepage": "https://iamgergo.com",
-            "role": "Developer"
+            "email": "dngege@gmail.com"
         }
     ],
-    "require": {
-        "php": "^7.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "5.*"
-    },
     "autoload": {
         "psr-4": {
-            "Pine\\Impersonate\\": "src"
+            "Pine\\Impersonate\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Pine\\Impersonate\\Test\\": "tests"
+            "Pine\\Impersonate\\Test\\": "tests/"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
     },
     "scripts": {
         "test": "vendor/bin/phpunit"
