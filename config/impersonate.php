@@ -21,7 +21,7 @@ return [
     |
     | You can define the middlewares, what you want to bind to the package's
     | controllers. By default, only the "auth" middleware is present. When
-    | you need more security (we're sure you need), you can add them here.
+    | you need more security, you can add them here.
     |
     */
 
@@ -37,10 +37,13 @@ return [
     |--------------------------------------------------------------------------
     |
     | This is the route, where the controller action will redirect the user
-    | after impersonating or reverting.
-    |
+    | after impersonating or reverting. You may use the route() helper,
+    | for named routes.
     */
 
-    'redirect' => '/home',
+    'redirect' => [
+        'impersonate' => '/home',
+        'revert' => '/home',
+    ],
 
 ];
