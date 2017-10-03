@@ -7,13 +7,32 @@ With this package, it's easy to implement it, without touching the core of our a
 
 Configure the package as you need and it's ready to go!
 
-### Requirements
-
 ### Getting Started
 
 You can install the package with composer, using the ``composer require thepinecode/impersonate`` command.
 
+#### Laravel 5.5
+
+If you are using version 5.5, there is nothing else to do.
+Since the package supports autodiscovery, Laravel will register the service provider automatically, behind the scenes.
+
+#### Laravel 5.4 and below
+
+You have to register the service provider manually.
+Go to the ``config/app.php`` file and add the ``Pine\Impersonate\ImpersonateServiceProvider::class`` to the providers array.
+
+#### Disable the autodiscovery for the package
+
+In some cases you may disable autodiscovery for this package.
+You can add the provider class to the ``dont-discover`` array to disable it.
+
+Then you need to register it manually again.
+
 ### Configuration
+
+You may override the default configurations. To do that, first you have to publish the config file with the following command:
+``php artisan vendor:publish --provider=Pine\Impersonate\ImpersonateServiceProvider``.
+Then you can find the config file, at ``config/impersonate.php``.
 
 ### Middlewares
 
