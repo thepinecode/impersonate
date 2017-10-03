@@ -11,6 +11,8 @@ Configure the package as you need and it's ready to go!
 
 ### Getting Started
 
+You can install the package with composer, using the ``composer require thepinecode/impersonate`` command.
+
 ### Configuration
 
 ### Middlewares
