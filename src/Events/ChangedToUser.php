@@ -12,14 +12,14 @@ class ChangedToUser
     /**
      * The user instance.
      *
-     * @var User
+     * @var mixed
      */
     public $user;
 
     /**
      * Create a new event instance.
      *
-     * @param  User  $user
+     * @param  mixed  $user
      * @return void
      */
     public function __construct($user)

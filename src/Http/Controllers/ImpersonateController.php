@@ -51,7 +51,7 @@ class ImpersonateController extends BaseController
             event(new ChangedToUser($user));
         }
 
-        return redirect(config('impersonate.redirect'));
+        return redirect(config('impersonate.redirect.impersonate'));
     }
 
     /**
@@ -67,6 +67,6 @@ class ImpersonateController extends BaseController
 
         event(new Reverted);
 
-        return redirect(config('impersonate.redirect'));
+        return redirect(config('impersonate.redirect.revert'));
     }
 }

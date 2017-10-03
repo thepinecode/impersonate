@@ -3,7 +3,6 @@
 namespace Pine\Impersonate;
 
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 
 class ImpersonateServiceProvider extends ServiceProvider
@@ -21,8 +20,12 @@ class ImpersonateServiceProvider extends ServiceProvider
             __DIR__.'/../config/impersonate.php' => config_path('impersonate.php'),
         ]);
 
-        Blade::if('impoersonate', function () {
-            return Session::has('original_user');
+        Blade::directive('impersonate', function () {
+            return "<?php if (session()->has('original_user')): ?>";
+        });
+
+        Blade::directive('endimpersonate', function () {
+            return "<?php endif; ?>";
         });
     }
 
