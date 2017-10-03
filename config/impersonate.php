@@ -12,7 +12,7 @@ return [
     |
     */
 
-   'model' => App\User::class,
+   'model' => \App\User::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,8 @@ return [
     'middlewares' => [
         'web',
         'auth',
-        // 'can:impersonate',
+        \Pine\Impersonate\Http\Middleware\CannotImpersonateItself::class,
+        // 'can:impersonate,\App\User',
     ],
 
     /*

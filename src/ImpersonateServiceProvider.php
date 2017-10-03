@@ -40,6 +40,7 @@ class ImpersonateServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Merge the config
         $this->mergeConfigFrom(
             __DIR__.'/../config/impersonate.php', 'impersonate'
         );

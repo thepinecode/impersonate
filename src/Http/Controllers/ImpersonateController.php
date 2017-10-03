@@ -6,20 +6,12 @@ use Illuminate\Support\Facades\Auth;
 use Pine\Impersonate\Events\Reverted;
 use Illuminate\Support\Facades\Session;
 use Pine\Impersonate\Events\ChangedToUser;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ImpersonateController extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs;
-
-    /**
-     * The user model class.
-     *
-     * @var string
-     */
-    protected $model;
+    use AuthorizesRequests;
 
     /**
      * Create a new controller instance.
@@ -28,8 +20,6 @@ class ImpersonateController extends BaseController
      */
     public function __construct()
     {
-        $this->model = config('impersonate.model');
-
         foreach (config('impersonate.middlewares') as $middleware) {
             $this->middleware($middleware);
         }
@@ -43,13 +33,11 @@ class ImpersonateController extends BaseController
      */
     public function impersonate($id)
     {
-        if ($id !== ($original = Auth::user()->id)) {
-            Session::put('original_user', $original);
+        Session::put('original_user', Auth::user()->id);
 
-            Auth::login($user = $this->model::findOrFail($id));
+        Auth::login($user = config('impersonate.model')::findOrFail($id));
 
-            event(new ChangedToUser($user));
-        }
+        event(new ChangedToUser($user));
 
         return redirect(config('impersonate.redirect.impersonate'));
     }
