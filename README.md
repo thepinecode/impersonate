@@ -34,6 +34,17 @@ The revert route's properties are the following:
 - Name: ``impersonate.revert``
 - Controller@action: ``Pine\Impersonate\Http\Controllers\ImpersonateController@revert``
 
+As you see, when we navigate a user to these routes, the action have to hit the server.
+That means, if you use something like Vue Router, please take care to use a normal link for these instead of the router's.
+
+```html
+<!-- Bad, it will hit the router -->
+<router-link to="/impersonate/revert">Revert</router-link>
+
+<!-- Good, it will hit the server -->
+<a href="/impersonate/revert">Revert</a>
+```
+
 ### Redirection
 
 After impersonating a user, or reverting we return with a redirection response.
@@ -79,4 +90,19 @@ It's like a basic if statement.
 @endimpersonate
 ```
 
-### Working with JS or SPAs
+### Working with JS
+
+Since the whole process is session based, we have the information about the current state only on the server-side.
+That means, if we want to integrate the package with an SPA, we need to extract the info and make it accessible in the front-end.
+
+At the first load, we have the chance to fetch the current status to the ``window`` object. For example:
+
+```html
+<script>
+    @impersonate
+        window.isImpersonating = true;
+    @else
+        window.isImpersonating = false;
+    @endimpersonate
+</script>
+```
