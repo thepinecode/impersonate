@@ -23,13 +23,8 @@ class ImpersonateServiceProvider extends ServiceProvider
         ]);
 
         // Register the custom blade directive's opening tag
-        Blade::directive('impersonate', function () {
-            return "<?php if (session()->has('original_user')): ?>";
-        });
-
-        // Register the custom blade directive's closing tag
-        Blade::directive('endimpersonate', function () {
-            return "<?php endif; ?>";
+        Blade::if('impersonate', function () {
+            return session()->has('original_user');
         });
     }
 

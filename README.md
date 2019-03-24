@@ -127,3 +127,7 @@ At the first load, we have the chance to fetch the current status to the ``windo
     @endimpersonate
 </script>
 ```
+
+## Contribute
+
+If you found a bug or you have an idea connecting the package, feel free to open an issue.

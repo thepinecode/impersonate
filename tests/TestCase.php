@@ -10,7 +10,7 @@ abstract class TestCase extends BaseTestCase
 {
     protected $admin, $user;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
