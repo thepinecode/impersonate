@@ -3,11 +3,10 @@
 namespace Pine\Impersonate\Events;
 
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Foundation\Events\Dispatchable;
 
 class ChangedToUser
 {
-    use Dispatchable, SerializesModels;
+    use  SerializesModels;
 
     /**
      * The user instance.
