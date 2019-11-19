@@ -3,8 +3,8 @@
 namespace Pine\Impersonate\Test;
 
 use Illuminate\Support\Facades\Route;
-use Pine\Impersonate\ImpersonateServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Pine\Impersonate\ImpersonateServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {

@@ -22,16 +22,15 @@ class ImpersonateServiceProvider extends ServiceProvider
             __DIR__.'/../config/impersonate.php' => config_path('impersonate.php'),
         ]);
 
-        // Register the custom blade directive's opening tag
+        // Register the @impersonate directive
         Blade::directive('impersonate', function () {
-            return "<? if(session()->has('original_user')): ?>";
+            return "<? if(Session::has('original_user')): ?>";
         });
 
-        // Register the custom blade directive's opening tag
+        // Register the @endimpersonate directive
         Blade::directive('endimpersonate', function () {
             return "<? endif; ?>";
         });
-
     }
 
     /**

@@ -4,8 +4,8 @@ namespace Pine\Impersonate\Test;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
-use Pine\Impersonate\Events\Reverted;
 use Pine\Impersonate\Events\ChangedToUser;
+use Pine\Impersonate\Events\Reverted;
 
 class ImpersonateTest extends TestCase
 {

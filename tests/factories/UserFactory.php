@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Pine\Impersonate\Test\Models\User;
 
 $factory->define(User::class, function (Faker $faker) {

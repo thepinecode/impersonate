@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.3.0 (2019-11-19)
+Make the package pre compatible with older Laravel versions
+
 ## v0.2.0 (2019-03-24)
 Make the package Laravel 5.8 compatible
 

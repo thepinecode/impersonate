@@ -1,7 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'impersonate'],function () {
-
+Route::group(['prefix' => 'impersonate'], function () {
     # Revert
     Route::get('revert', 'Pine\Impersonate\Http\Controllers\ImpersonateController@revert')->name('impersonate.revert');
     # Impersonate

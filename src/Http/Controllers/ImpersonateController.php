@@ -2,12 +2,12 @@
 
 namespace Pine\Impersonate\Http\Controllers;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
-use Pine\Impersonate\Events\Reverted;
 use Illuminate\Support\Facades\Session;
 use Pine\Impersonate\Events\ChangedToUser;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Pine\Impersonate\Events\Reverted;
 
 class ImpersonateController extends BaseController
 {
