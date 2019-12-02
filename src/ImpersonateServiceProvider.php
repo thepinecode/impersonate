@@ -24,12 +24,12 @@ class ImpersonateServiceProvider extends ServiceProvider
 
         // Register the @impersonate directive
         Blade::directive('impersonate', function () {
-            return "<? if(Session::has('original_user')): ?>";
+            return "<?php if(Session::has('original_user')): ?>";
         });
 
         // Register the @endimpersonate directive
         Blade::directive('endimpersonate', function () {
-            return "<? endif; ?>";
+            return "<?php endif; ?>";
         });
     }
 
