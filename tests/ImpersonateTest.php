@@ -29,9 +29,12 @@ class ImpersonateTest extends TestCase
     {
         Event::fake();
 
-        $this->actingAs($this->admin)
+        $response = $this->actingAs($this->admin)
             ->get("impersonate/{$this->user->id}")
-            ->assertRedirect('home')
+            ->assertRedirect('impersonate-test');
+
+        $this->followRedirects($response)
+            ->assertSee('Impersonating')
             ->assertSessionHas('original_user', $this->admin->id);
 
         $this->assertEquals($this->user->id, Auth::id());
@@ -49,9 +52,12 @@ class ImpersonateTest extends TestCase
         $this->actingAs($this->admin)
             ->get("impersonate/{$this->user->id}");
 
-        $this->actingAs($this->user)
+        $response = $this->actingAs($this->user)
             ->get('impersonate/revert')
-            ->assertRedirect('home')
+            ->assertRedirect('impersonate-test');
+
+        $this->followRedirects($response)
+            ->assertSee('Not impersonating')
             ->assertSessionMissing('original_user');
 
         $this->assertEquals($this->admin->id, Auth::id());

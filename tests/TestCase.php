@@ -3,6 +3,7 @@
 namespace Pine\Impersonate\Test;
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Pine\Impersonate\ImpersonateServiceProvider;
 
@@ -19,6 +20,12 @@ abstract class TestCase extends BaseTestCase
 
         $this->setUpDatabase();
 
+        View::addNamespace('impersonate', __DIR__.'/views');
+
+        Route::get('/impersonate-test', function () {
+            return view("impersonate::impersonate");
+        });
+
         Route::auth();
     }
 
@@ -28,10 +35,11 @@ abstract class TestCase extends BaseTestCase
         $app['config']->set('database.connections.testbench', [
             'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix'   => '',
         ]);
         $app['config']->set('app.key', 'AckfSECXIvnK5r28GVIWUAxmbBSjTsmF');
         $app['config']->set('impersonate.model', Models\User::class);
+        $app['config']->set('impersonate.redirect.impersonate', '/impersonate-test');
+        $app['config']->set('impersonate.redirect.revert', '/impersonate-test');
         $app['config']->set('auth.providers.users.model', Models\User::class);
     }
 
