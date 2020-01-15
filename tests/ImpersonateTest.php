@@ -1,6 +1,6 @@
 <?php
 
-namespace Pine\Impersonate\Test;
+namespace Pine\Impersonate\Tests;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;

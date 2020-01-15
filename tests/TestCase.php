@@ -1,6 +1,6 @@
 <?php
 
-namespace Pine\Impersonate\Test;
+namespace Pine\Impersonate\Tests;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
@@ -31,11 +31,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('database.default', 'testbench');
-        $app['config']->set('database.connections.testbench', [
-            'driver'   => 'sqlite',
-            'database' => ':memory:',
-        ]);
+        $app['config']->set('database.default', 'testing');
         $app['config']->set('app.key', 'AckfSECXIvnK5r28GVIWUAxmbBSjTsmF');
         $app['config']->set('impersonate.model', Models\User::class);
         $app['config']->set('impersonate.redirect.impersonate', '/impersonate-test');

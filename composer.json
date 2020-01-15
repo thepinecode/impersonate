@@ -16,14 +16,14 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Pine\\Impersonate\\Test\\": "tests/"
+            "Pine\\Impersonate\\Tests\\": "tests/"
         }
     },
     "require": {
         "php" : "^7.1"
     },
     "require-dev": {
-        "orchestra/testbench":"~3.8.0"
+        "orchestra/testbench":"~4.5.0"
     },
     "scripts": {
         "test": "vendor/bin/phpunit"

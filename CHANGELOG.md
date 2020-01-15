@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.4.0 (2020-01-15)
+### Changed
+- Upgrade testbench version
+- Update license date
+- Update tests namespace
+
 ## v0.3.1 (2019-12-02)
 ### Added
 - Blade tests
